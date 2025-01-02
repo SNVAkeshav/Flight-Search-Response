@@ -1,0 +1,12 @@
+[
+  { "from": "PAB", "to": "DEL" },
+  { "from": "DEL", "to": "PAB" },
+  { "from": "BOM", "to": "HYD" },
+  { "from": "HYD", "to": "BLR" },
+  { "from": "BLR", "to": "GOI" },
+  { "from": "GOI", "to": "PUN" },
+  { "from": "PUN", "to": "DEL" },
+  { "from": "DEL", "to": "CHN" },
+  { "from": "CHN", "to": "BLR" },
+  { "from": "BLR", "to": "TRV" }
+]
