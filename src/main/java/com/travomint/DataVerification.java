@@ -74,7 +74,7 @@ public class DataVerification {
             
             // Date selection
             
-            driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[5]/td[3]")).click();
+            driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[5]")).click();
             System.out.println("From Date Successfully Selected.");
             
             WebElement date = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div/div[1]/div/div[1]/div"));
@@ -231,7 +231,7 @@ public class DataVerification {
     
     public static void sendEmail(String to, String cc, String bcc, String subject, String body) throws MessagingException {
         final String from = "keshav@snva.com";
-        final String password = "your-password"; // Replace with your email password or use environment variables
+        final String password = "password"; // Replace with your email password or use environment variables
         if (from == null || password == null) {
             System.err.println("Email credentials are missing.");
             return;

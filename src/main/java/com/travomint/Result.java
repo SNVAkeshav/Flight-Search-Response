@@ -129,13 +129,76 @@ class Result {
 //                   "</html>";
 //        }
 //}
+//        @Override
+//        public String toString() {
+//            return "<html>" +
+//                   "<body>" +
+//                   "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>" +
+//                   // Header Row
+//                   "<tr style='background-color: orange;'>" +
+//                   "<th>Route</th>" +
+//                   "<th>Website Title</th>" +
+//                   "<th>From</th>" +
+//                   "<th>To</th>" +
+//                   "<th>Date</th>" +
+//                   "<th>Traveler(s) & Class</th>" +
+//                   "<th>Total Flights Showing</th>" +
+//                   "<th>Search Response Time</th>" +
+//                   "</tr>" +
+//
+//                   // Widget Row
+//                   "<tr>" +
+//                   "<th>Widget</th>" +
+//                   "<td>" + title + "</td>" +
+//                   "<td>" + text1 + "</td>" +
+//                   "<td>" + fromWidget + "</td>" +
+//                   "<td>" + calenderWidget + "</td>" +
+//                   "<td>" + travelerWidget + "</td>" +
+//                   "<td colspan='2'></td>" + // Empty cells for Widget row
+//                   "</tr>" +
+//
+//                   // Listing Row
+//                   "<tr>" +
+//                   "<th>Listing</th>" +
+//                   "<td></td>" + // Empty cell for Website Title in Listing row
+//                   "<td>" + text2 + "</td>" +
+//                   "<td>" + fromDestination + "</td>" +
+//                   "<td>" + calenderModified + "</td>" +
+//                   "<td>" + travelerModified + "</td>" +
+//                   "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
+//                   "<td>" + searchTime + " Seconds</td>" +
+//                   "</tr>" +
+//                   "</table>" +
+////                   "<p style='color: black;'>Automatic mail for flights<br>" +
+////                   "<strong>Keshav</strong></p>" +
+//					"<br></br>"+
+//                   "</body>" +
+//                   "</html>";
+//        }
+//}
+        
         @Override
         public String toString() {
             return "<html>" +
+                   "<head>" +
+                   "<style>" +
+                   "table { width: 100%; border-collapse: collapse; }" +
+                   "th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }" +
+                   "th { background-color: orange; color: white; }" +
+                   "@media screen and (max-width: 768px) {" + // For small screens
+                   "  table { font-size: 12px; }" +
+                   "  th, td { padding: 6px; }" +
+                   "}" +
+                   "@media screen and (min-width: 769px) {" + // For large screens
+                   "  table { font-size: 16px; }" +
+                   "  th, td { padding: 10px; }" +
+                   "}" +
+                   "</style>" +
+                   "</head>" +
                    "<body>" +
-                   "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>" +
+                   "<table>" +
                    // Header Row
-                   "<tr style='background-color: orange;'>" +
+                   "<tr>" +
                    "<th>Route</th>" +
                    "<th>Website Title</th>" +
                    "<th>From</th>" +
@@ -169,9 +232,7 @@ class Result {
                    "<td>" + searchTime + " Seconds</td>" +
                    "</tr>" +
                    "</table>" +
-//                   "<p style='color: black;'>Automatic mail for flights<br>" +
-//                   "<strong>Keshav</strong></p>" +
-					"<br></br>"+
+                   "<br></br>" +
                    "</body>" +
                    "</html>";
         }

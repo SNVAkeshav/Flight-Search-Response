@@ -333,7 +333,6 @@
 //    }
 //}
 
-
 package com.travomint;
 
 import java.io.IOException;
@@ -353,61 +352,61 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Travomint {
 
-    public static void main(String[] args) {
-        // Initialize the scheduled executor service to run the task every hour
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	public static void main(String[] args) {
+		// Initialize the scheduled executor service to run the task every hour
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        Runnable task = () -> {
-            try {
-                // Execute the flight search logic
-                performFlightSearch();
-            } catch (Exception e) {
-                System.err.println("Error during scheduled task execution: " + e.getMessage());
-            }
-        };
+		Runnable task = () -> {
+			try {
+				// Execute the flight search logic
+				performFlightSearch();
+			} catch (Exception e) {
+				System.err.println("Error during scheduled task execution: " + e.getMessage());
+			}
+		};
 
-        // Schedule the task with an initial delay of 0 and a period of 1 hour
-        scheduler.scheduleAtFixedRate(task, 0, 1, TimeUnit.HOURS);
-    }
+		// Schedule the task with an initial delay of 0 and a period of 1 hour
+		scheduler.scheduleAtFixedRate(task, 0, 1, TimeUnit.HOURS);
+	}
 
-    public static void performFlightSearch() throws InterruptedException {
-        // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.chrome.driver", "D:\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+	public static void performFlightSearch() throws InterruptedException {
+		// Set the path to the ChromeDriver executable
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
 
-        // Initialize WebDriver
-        WebDriver driver = new ChromeDriver();
+		// Initialize WebDriver
+		WebDriver driver = new ChromeDriver();
 
-        String fileName = "routes.json";
-        StringBuilder emailContent = new StringBuilder(); // Collect results here
-        emailContent.append("<html><body>");
+		String fileName = "routes.json";
+		StringBuilder emailContent = new StringBuilder(); // Collect results here
+		emailContent.append("<html><body>");
 
-        try (InputStream inputStream = Travomint.class.getClassLoader().getResourceAsStream(fileName)) {
-            if (inputStream == null) {
-                System.err.println("File not found: " + fileName);
-                return;
-            }
+		try (InputStream inputStream = Travomint.class.getClassLoader().getResourceAsStream(fileName)) {
+			if (inputStream == null) {
+				System.err.println("File not found: " + fileName);
+				return;
+			}
 
-            // Parse the JSON file into a list of routes
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Map<String, String>> routes = objectMapper.readValue(inputStream, new TypeReference<>() {});
+			// Parse the JSON file into a list of routes
+			ObjectMapper objectMapper = new ObjectMapper();
+			List<Map<String, String>> routes = objectMapper.readValue(inputStream, new TypeReference<>() {
+			});
 
-            // Shuffle the routes
-            Collections.shuffle(routes);
+			// Shuffle the routes
+			Collections.shuffle(routes);
 
-            System.out.println("Shuffled Routes:");
-            printRoutes(routes);
+			System.out.println("Shuffled Routes:");
+			printRoutes(routes);
 
-            
-            int routeCounter = 1;
-            
-            // Traverse and process each route
-            for (Map<String, String> route : routes) {
-                String from = route.get("from");
-                String to = route.get("to");
+			int routeCounter = 1;
 
-                System.out.println("Processing route: From " + from + " To " + to);
-                try {
-                    // Execute the route processing logic and collect results
+			// Traverse and process each route
+			for (Map<String, String> route : routes) {
+				String from = route.get("from");
+				String to = route.get("to");
+
+				System.out.println("Processing route: From " + from + " To " + to);
+				try {
+					// Execute the route processing logic and collect results
 //                    String result = DataVerification.executeVerifiedData(driver, from, to);
 //                    emailContent.append(result); // Append result to email content
 //                } catch (Exception e) {
@@ -415,52 +414,69 @@ public class Travomint {
 //                    continue;
 //                }
 //            }
-                	
-                	emailContent.append("<h3>Route ").append(routeCounter).append("</h3>")
-                	.append("<p>From: ").append(from).append(", To: ").append(to).append("</p>");
-                	routeCounter++;
 
-        // Execute the route processing logic and collect results
-        String result = DataVerification.executeVerifiedData(driver, from, to);
-        emailContent.append(result); // Append result to email content
-    } catch (Exception e) {
-        System.err.println("Error processing route from " + from + " to " + to + ": " + e.getMessage());
-        continue;
-    }
-}
-            emailContent.append("<br><br>")
-            .append("<p>Best regards,</p>")
-            .append("<p>Testing Team</p>");
+					emailContent.append("<h3>Route ")
+								.append(routeCounter)
+								.append("</h3>")
+								.append("<p>From: ")
+								.append(from)
+								.append(", To: ")
+								.append(to)
+								.append("</p>");
+					
+					routeCounter++;
+
+					// Execute the route processing logic and collect results
+					String result = DataVerification.executeVerifiedData(driver, from, to);
+					
+					emailContent.append(result); // Append result to email content
+				} catch (Exception e) {
+					System.err.println("Error processing route from " + from + " to " + to + ": " + e.getMessage());
+					continue;
+				}
+			}
+			// emailContent.append("<br><br>").append("<p>Best
+			// Regards,</p>").append("<p>Testing Team</p>");
+			
+			emailContent.append("<br><br>")
+						.append("<p style='color: gray;'>Best Regards,<br>" + "<strong>Testing Team</strong></p>")
+						.append("<a href='https://www.travomint.com' target='_blank' title='Visit Travomint Website'>")
+						.append("<img src='https://www.travomint.com/Image/logo.png' alt='Testing Team' style='width:146px; height:30px;'>")
+						.append("</a>");
+
 //            .append("<p>Contact: developer@travomint.com</p>");
+//	          "<p style='color: black;'>Automatic mail for flights<br>" +
+//	          "<strong>Keshav</strong></p>"
 
-emailContent.append("</body></html>"); // Close HTML content
+			emailContent.append("</body></html>"); // Close HTML content
 
 //            emailContent.append("</body></html>"); // Close HTML content
-        } catch (IOException e) {
-            System.err.println("Error reading or parsing routes.json: " + e.getMessage());
-        } finally {
-            // Clean up WebDriver
-            if (driver != null) {
-                driver.quit();
-            }
+		} catch (IOException e) {
+			System.err.println("Error reading or parsing routes.json: " + e.getMessage());
+		} finally {
+			// Clean up WebDriver
+			if (driver != null) {
+				driver.quit();
+			}
 
-            // Send the aggregated email
-            try {
-                DataVerification.sendEmail("developer@travomint.com,testing@snva.com", "alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "snvaqc@gmail.com",
+			// Send the aggregated email
+			try {
+//				DataVerification.sendEmail("developer@travomint.com,testing@snva.com",
+//						"alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "snvaqc@gmail.com",
 
-//                DataVerification.sendEmail("snvaqc@gmail.com", "snvaqc@gmail.com", "snvaqc@gmail.com",
-                        "Automated Travomint.com Response for All Routes", emailContent.toString());
-                System.out.println("Email sent successfully!");
-            } catch (Exception e) {
-                System.err.println("Failed to send email: " + e.getMessage());
-            }
-        }
-    }
+				DataVerification.sendEmail("snvaqc@gmail.com", "snvaqc@gmail.com", "snvaqc@gmail.com",
+						"Automated Scheduled Flight Response from - Travomint.com", emailContent.toString());
+				System.out.println("Email sent successfully!");
+			} catch (Exception e) {
+				System.err.println("Failed to send email: " + e.getMessage());
+			}
+		}
+	}
 
-    // Utility method to print all routes
-    private static void printRoutes(List<Map<String, String>> routes) {
-        for (Map<String, String> route : routes) {
-            System.out.println("From: " + route.get("from") + ", To: " + route.get("to"));
-        }
-    }
+	// Utility method to print all routes
+	private static void printRoutes(List<Map<String, String>> routes) {
+		for (Map<String, String> route : routes) {
+			System.out.println("From: " + route.get("from") + ", To: " + route.get("to"));
+		}
+	}
 }
