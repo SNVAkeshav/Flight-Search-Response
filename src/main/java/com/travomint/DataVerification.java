@@ -231,7 +231,7 @@ public class DataVerification {
     
     public static void sendEmail(String to, String cc, String bcc, String subject, String body) throws MessagingException {
         final String from = "keshav@snva.com";
-        final String password = "password"; // Replace with your email password or use environment variables
+        final String password = "your-password"; // Replace with your email password or use environment variables
         if (from == null || password == null) {
             System.err.println("Email credentials are missing.");
             return;

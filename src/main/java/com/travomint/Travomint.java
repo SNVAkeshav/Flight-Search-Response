@@ -461,10 +461,10 @@ public class Travomint {
 
 			// Send the aggregated email
 			try {
-//				DataVerification.sendEmail("developer@travomint.com,testing@snva.com",
-//						"alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "snvaqc@gmail.com",
+				DataVerification.sendEmail("developer@travomint.com,testing@snva.com",
+						"alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "snvaqc@gmail.com",
 
-				DataVerification.sendEmail("snvaqc@gmail.com", "snvaqc@gmail.com", "snvaqc@gmail.com",
+				//DataVerification.sendEmail("snvaqc@gmail.com", "snvaqc@gmail.com", "snvaqc@gmail.com",
 						"Automated Scheduled Flight Response from - Travomint.com", emailContent.toString());
 				System.out.println("Email sent successfully!");
 			} catch (Exception e) {
