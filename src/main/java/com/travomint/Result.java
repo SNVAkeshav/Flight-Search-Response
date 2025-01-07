@@ -1,27 +1,39 @@
 package com.travomint;
 
 class Result {
-        private String title;
-        private String text1;
+        //private String title;
+        private String availableCurrencyOnWidget;
+        private String tripSelection;
         private String fromWidget;
+        private String toWidget;
         private String calenderWidget;
         private String travelerWidget;
-        private String text2;
-        private String fromDestination;
+        private String currencyOnListing;
+        private String listingTripType;
+        private String fromOnListing;
+        private String toOnListingPage;
         private String totalShowing;
         private String calenderModified;
         private String travelerModified;
+        private String airlinespriceSymbol;
+        private String firstPriceShowing;
         private double searchTime;
         
         // Setters for each result variable
-        public void setTitle(String title) {
-            this.title = title;
+//        public void setTitle(String title) {
+//            this.title = title;
+//        }
+        public void setAvailableCurrencyOnWidget(String availableCurrencyOnWidget) {
+        	this.availableCurrencyOnWidget = availableCurrencyOnWidget;
         }
-        public void setText1(String text1) {
-            this.text1 = text1;
+        public void setTripSelection(String tripSelection) {
+        	this.tripSelection = tripSelection;
         }
         public void setFromWidget(String fromWidget) {
             this.fromWidget = fromWidget;
+        }
+        public void setTOWidget(String toWidget) {
+            this.toWidget = toWidget;
         }
         public void setCalenderWidget(String calenderWidget) {
             this.calenderWidget = calenderWidget;
@@ -29,11 +41,17 @@ class Result {
         public void setTravelerWidget(String travelerWidget) {
             this.travelerWidget = travelerWidget;
         }
-        public void setText2(String text2) {
-            this.text2 = text2;
+        public void setCurrencyOnListing(String currencyOnListing) {
+        	this.currencyOnListing = currencyOnListing;
         }
-        public void setFromDestination(String fromDestination) {
-            this.fromDestination = fromDestination;
+        public void setListingTripType(String listingTripType) {
+        	this.listingTripType = listingTripType;
+        }
+        public void setFromOnListing(String fromOnListing) {
+            this.fromOnListing = fromOnListing;
+        }
+        public void setToOnListingPage(String toOnListingPage) {
+            this.toOnListingPage = toOnListingPage;
         }
         public void setTotalShowing(String totalShowing) {
             this.totalShowing = totalShowing;
@@ -43,6 +61,12 @@ class Result {
         }
         public void settravelerModified(String travelerModified) {
             this.travelerModified = travelerModified;
+        }
+        public void setAirlinespriceSymbol(String airlinespriceSymbol) {
+        	this.airlinespriceSymbol = airlinespriceSymbol;
+        }
+        public void setFirstPriceShowing(String firstPriceShowing) {
+        	this.firstPriceShowing = firstPriceShowing;
         }
         public void setsearchTime(double searchTime) {
             this.searchTime = searchTime;
@@ -184,7 +208,7 @@ class Result {
                    "<style>" +
                    "table { width: 100%; border-collapse: collapse; }" +
                    "th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }" +
-                   "th { background-color: orange; color: white; }" +
+                   "th { background-color: #d45c06; color: white; }" +
                    "@media screen and (max-width: 768px) {" + // For small screens
                    "  table { font-size: 12px; }" +
                    "  th, td { padding: 6px; }" +
@@ -199,40 +223,52 @@ class Result {
                    "<table>" +
                    // Header Row
                    "<tr>" +
-                   "<th>Route</th>" +
-                   "<th>Website Title</th>" +
+                   "<th>Page</th>" +
+//                   "<th>Website Title</th>" +
+                   "<th>Currency</th>" +
+                   "<th>Trip Type</th>" +
                    "<th>From</th>" +
                    "<th>To</th>" +
                    "<th>Date</th>" +
                    "<th>Traveler(s) & Class</th>" +
                    "<th>Total Flights Showing</th>" +
-                   "<th>Search Response Time</th>" +
+                   "<th>Available Airlines</th>" +
+                   "<th>First Airline Price</th>" +
+                   "<th>Search Time</th>" +
                    "</tr>" +
 
                    // Widget Row
                    "<tr>" +
                    "<th>Widget</th>" +
-                   "<td>" + title + "</td>" +
-                   "<td>" + text1 + "</td>" +
+//                   "<td>" + title + "</td>" +
+                   "<td>" + availableCurrencyOnWidget + "</td>" +
+                   "<td>" + tripSelection + "</td>" +
                    "<td>" + fromWidget + "</td>" +
+                   "<td>" + toWidget + "</td>" +
                    "<td>" + calenderWidget + "</td>" +
                    "<td>" + travelerWidget + "</td>" +
-                   "<td colspan='2'></td>" + // Empty cells for Widget row
-                   "</tr>" +
+                   "<td style = 'text-align: center;'> NA </td>"  + // Empty cells for Widget row
+                   "<td style = 'text-align: center;'> NA </td>" + // Empty cells for Widget row
+                   "<td style = 'text-align: center;'> NA </td>"  +
+                   "<td style = 'text-align: center;'> NA </td>"  +
+                   "</tr>" +	
 
                    // Listing Row
                    "<tr>" +
                    "<th>Listing</th>" +
-                   "<td></td>" + // Empty cell for Website Title in Listing row
-                   "<td>" + text2 + "</td>" +
-                   "<td>" + fromDestination + "</td>" +
+//                   "<td style = 'text-align: center;'> NA </td>" + // Empty cell for Website Title in Listing row
+                   "<td>" + currencyOnListing + "</td>" +
+                   "<td>" + listingTripType + "</td>" +
+                   "<td>" + fromOnListing + "</td>" +
+                   "<td>" + toOnListingPage + "</td>" +
                    "<td>" + calenderModified + "</td>" +
                    "<td>" + travelerModified + "</td>" +
                    "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
+                   "<td>" + airlinespriceSymbol + "</td>" +
+                   "<td>" + firstPriceShowing + "</td>" +
                    "<td>" + searchTime + " Seconds</td>" +
                    "</tr>" +
                    "</table>" +
-                   "<br></br>" +
                    "</body>" +
                    "</html>";
         }

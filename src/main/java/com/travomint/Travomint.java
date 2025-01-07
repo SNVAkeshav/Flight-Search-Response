@@ -386,6 +386,17 @@ public class Travomint {
 				return;
 			}
 
+	        // Open the website and get its title
+	        driver.get("https://www.travomint.com/");
+	        String WebsiteTitle = driver.getTitle();
+	        System.out.println("Website Title: " + WebsiteTitle);
+	        System.out.println(" ");
+	        
+	     // Append the website title to the email content
+	        emailContent.append("<h2>Website Title -> ")
+	                    .append(WebsiteTitle)
+	                    .append("</h2>");
+	        
 			// Parse the JSON file into a list of routes
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Map<String, String>> routes = objectMapper.readValue(inputStream, new TypeReference<>() {
@@ -396,7 +407,9 @@ public class Travomint {
 
 			System.out.println("Shuffled Routes:");
 			printRoutes(routes);
+			
 
+			
 			int routeCounter = 1;
 
 			// Traverse and process each route
@@ -404,7 +417,9 @@ public class Travomint {
 				String from = route.get("from");
 				String to = route.get("to");
 
+				System.out.println("Search for Route: " + routeCounter);
 				System.out.println("Processing route: From " + from + " To " + to);
+				System.out.println(" ");
 				try {
 					// Execute the route processing logic and collect results
 //                    String result = DataVerification.executeVerifiedData(driver, from, to);
@@ -438,8 +453,7 @@ public class Travomint {
 			// emailContent.append("<br><br>").append("<p>Best
 			// Regards,</p>").append("<p>Testing Team</p>");
 			
-			emailContent.append("<br><br>")
-						.append("<p style='color: gray;'>Best Regards,<br>" + "<strong>Testing Team</strong></p>")
+			emailContent.append("<p style='color: gray;'>Best Regards,<br>" + "<strong>Testing Team</strong></p>")
 						.append("<a href='https://www.travomint.com' target='_blank' title='Visit Travomint Website'>")
 						.append("<img src='https://www.travomint.com/Image/logo.png' alt='Testing Team' style='width:146px; height:30px;'>")
 						.append("</a>");
@@ -461,11 +475,11 @@ public class Travomint {
 
 			// Send the aggregated email
 			try {
-				DataVerification.sendEmail("developer@travomint.com,testing@snva.com",
-						"alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "snvaqc@gmail.com",
+//				DataVerification.sendEmail("developer@travomint.com,testing@snva.com",
+//						"alok@snva.com,prashant@snva.com,davemaan@travomint.com,yugdeep@snva.com", "keshav@snva.com",
 
-				//DataVerification.sendEmail("snvaqc@gmail.com", "snvaqc@gmail.com", "snvaqc@gmail.com",
-						"Automated Scheduled Flight Response from - Travomint.com", emailContent.toString());
+				DataVerification.sendEmail("keshav@snva.com", "snvatesting@gmail.com", "snvaqc@gmail.com",
+						"Automated Scheduled Flight Response - Travomint.com", emailContent.toString());
 				System.out.println("Email sent successfully!");
 			} catch (Exception e) {
 				System.err.println("Failed to send email: " + e.getMessage());
