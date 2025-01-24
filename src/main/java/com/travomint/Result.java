@@ -17,7 +17,7 @@ class Result {
         private String travelerModified;
         private String airlinespriceSymbol;
         private String firstPriceShowing;
-        private double searchTime;
+        private String searchTime;
         
         // Setters for each result variable
 //        public void setTitle(String title) {
@@ -68,7 +68,7 @@ class Result {
         public void setFirstPriceShowing(String firstPriceShowing) {
         	this.firstPriceShowing = firstPriceShowing;
         }
-        public void setsearchTime(double searchTime) {
+        public void setsearchTime(String searchTime) {
             this.searchTime = searchTime;
         }
         
@@ -266,7 +266,7 @@ class Result {
                    "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
                    "<td>" + airlinespriceSymbol + "</td>" +
                    "<td>" + firstPriceShowing + "</td>" +
-                   "<td>" + searchTime + " Seconds</td>" +
+                   "<td>" + searchTime + " Sec</td>" +
                    "</tr>" +
                    "</table>" +
                    "</body>" +
