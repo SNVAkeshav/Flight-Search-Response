@@ -389,13 +389,13 @@ public class Travomint {
 	        // Open the website and get its title
 	        driver.get("https://www.travomint.com/");
 	        String WebsiteTitle = driver.getTitle();
-	        System.out.println("Website Title: " + WebsiteTitle);
+	        System.out.println("Website Title - " + WebsiteTitle);
 	        System.out.println(" ");
 	        
 	     // Append the website title to the email content
-	        emailContent.append("<h2>Website Title -> ")
+	        emailContent.append("<h3>Website Title -> ")
 	                    .append(WebsiteTitle)
-	                    .append("</h2>");
+	                    .append("</h3>");
 	        
 			// Parse the JSON file into a list of routes
 			ObjectMapper objectMapper = new ObjectMapper();

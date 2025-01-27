@@ -146,13 +146,13 @@ package com.travomint;
 		        }
 		        // Create Result object and populate it with values
 		        Result result = new Result();
-	            result.setTitle(title);
-	            result.setText1(text1);
+	           // result.setTitle(title);
+	           // result.setText1(text1);
 	            result.setFromWidget(toWidget);
 	            result.setCalenderWidget(CalenderWidget);
 	            result.setTravelerWidget(travelWidget);
-	            result.setText2(text2);
-	            result.setFromDestination(FromDestination);
+	          //  result.setText2(text2);
+	          //  result.setFromDestination(FromDestination);
 	            result.setTotalShowing(totalShowing);
 	            result.setCalenderModified(CalenderModified);
 	            result.settravelerModified(travelerModified);

@@ -30,9 +30,7 @@ public class DataVerification {
 
 		try {
 
-			// Maximize the browser window  
-			
-			
+			// Maximize the browser window
 
 			System.out.println("Maximize the current window");
 			driver.manage().window().maximize();
@@ -308,9 +306,13 @@ public class DataVerification {
 			} catch (NoSuchElementException | TimeoutException e) {
 				// Catch the NoSuchElementException and TimeoutException
 				System.out.println("Flight not found: " + e.getMessage());
+				 airlinespriceSymbol = "NA";
+				 firstPriceShowing = "NA";
 			} catch (Exception e) {
 				// Catch any other unexpected exceptions and log them
 				System.out.println("An unexpected error occurred: " + e.getMessage());
+				 airlinespriceSymbol = "NA";
+				 firstPriceShowing = "NA";
 			}
 
 			// Print outside the try-catch block
@@ -363,9 +365,9 @@ public class DataVerification {
 			String searchTime = String.format("%.2f", searchTimee);
 			System.out.println("Flight Search Time: " + searchTime);
 
-			WebElement fareAlert = wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div/div/button[2]")));
-			System.out.println("fare alert pop up removed successfully. ");
+//			WebElement fareAlert = wait.until(
+//					ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div/div/button[2]")));
+//			System.out.println("fare alert pop up removed successfully. ");
 
 			// Create Result object and called all the values
 			Result result = new Result();
