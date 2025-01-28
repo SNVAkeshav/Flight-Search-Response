@@ -2,7 +2,9 @@ package com.travomint;
 
 import java.io.UnsupportedEncodingException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
@@ -289,7 +291,7 @@ public class DataVerification {
 
 			String totalShowing = "No results";
 			String airlinespriceSymbol = "";
-			String firstPriceShowing = "";
+			//String firstPriceShowing = "";
 
 			try {
 				// WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -306,19 +308,44 @@ public class DataVerification {
 
 					String flightFilter = filterAirlines.getText(); // Trim any extra spaces
 					airlinespriceSymbol = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
+			        String[] arr = airlinespriceSymbol.split(" ");
+			        List<String> newArr = new ArrayList<>();
+			        for (String word : arr) {
+			            newArr.add(word.replace(",", ""));
+			        }
+			        int term = 1;
+			        Map<Integer, String> obj = new HashMap<>();
+			        for (String word : newArr) {
+			            if (obj.containsKey(term)) {
+			                obj.put(term, obj.get(term) + " " + word);
+			            } else {
+			                obj.put(term, word);
+			            }
+			            try {
+			                Double.parseDouble(word); // Parse to check if it's a number
+			                term++;
+			            } catch (NumberFormatException e) {
+			                // Do nothing if it's not a number
+			            }
+			        }
+			        for (Map.Entry<Integer, String> entry : obj.entrySet()) {
+			        	airlinespriceSymbol = entry.getValue();
+			            System.out.println(airlinespriceSymbol);
+			        }
+
 
 					// Wait for the first price element to be visible and retrieve its text
-					WebElement firstPrice = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-							"/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[6]/div[1]/div/div/div[3]/div[1]/div/span[1]")));
-					String firstShow = firstPrice.getText();
-					firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
+//					WebElement firstPrice = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+//							"/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[6]/div[1]/div/div/div[3]/div[1]/div/span[1]")));
+//					String firstShow = firstPrice.getText();
+//					firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
 
 				}
 			} catch (NoSuchElementException e) {
 				System.out.println("Flight not found.");
 				totalShowing = "Flight not found"; // Setting a default value when flight isn't found
 				 airlinespriceSymbol = "NA";
-				 firstPriceShowing = "NA";
+//				 firstPriceShowing = "NA";
 
 
 //        		driver.switchTo().newWindow(WindowType.TAB);
@@ -328,7 +355,7 @@ public class DataVerification {
 				System.out.println("Element not found within the specified timeout.");
 				totalShowing = "Flight not found"; // Timeout occurred, set the default message
 				 airlinespriceSymbol = "NA";
-				 firstPriceShowing = "NA";
+//				 firstPriceShowing = "NA";
 
 
 //        		driver.switchTo().newWindow(WindowType.TAB);
@@ -404,7 +431,7 @@ public class DataVerification {
 			result.setCalenderModified(CalenderModified);
 			result.settravelerModified(travelerModified);
 			result.setAirlinespriceSymbol(airlinespriceSymbol);
-			result.setFirstPriceShowing(firstPriceShowing);
+//			result.setFirstPriceShowing(firstPriceShowing);
 			result.setsearchTime(searchTime);
 			return result.toString();
 

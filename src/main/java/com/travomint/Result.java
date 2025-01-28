@@ -16,7 +16,7 @@ class Result {
         private String calenderModified;
         private String travelerModified;
         private String airlinespriceSymbol;
-        private String firstPriceShowing;
+//        private String firstPriceShowing;
         private String searchTime;
         
         // Setters for each result variable
@@ -65,9 +65,9 @@ class Result {
         public void setAirlinespriceSymbol(String airlinespriceSymbol) {
         	this.airlinespriceSymbol = airlinespriceSymbol;
         }
-        public void setFirstPriceShowing(String firstPriceShowing) {
-        	this.firstPriceShowing = firstPriceShowing;
-        }
+//        public void setFirstPriceShowing(String firstPriceShowing) {
+//        	this.firstPriceShowing = firstPriceShowing;
+//        }
         public void setsearchTime(String searchTime) {
             this.searchTime = searchTime;
         }
@@ -233,7 +233,7 @@ class Result {
                    "<th>Traveler(s) & Class</th>" +
                    "<th>Total Flights Showing</th>" +
                    "<th>Available Airlines</th>" +
-                   "<th>First Airline Price</th>" +
+//                   "<th>First Airline Price</th>" +
                    "<th>Search Time</th>" +
                    "</tr>" +
 
@@ -249,7 +249,7 @@ class Result {
                    "<td>" + travelerWidget + "</td>" +
                    "<td style = 'text-align: center;'> NA </td>"  + // Empty cells for Widget row
                    "<td style = 'text-align: center;'> NA </td>" + // Empty cells for Widget row
-                   "<td style = 'text-align: center;'> NA </td>"  +
+//                   "<td style = 'text-align: center;'> NA </td>"  +
                    "<td style = 'text-align: center;'> NA </td>"  +
                    "</tr>" +	
 
@@ -264,8 +264,8 @@ class Result {
                    "<td>" + calenderModified + "</td>" +
                    "<td>" + travelerModified + "</td>" +
                    "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
-                   "<td>" + airlinespriceSymbol + "</td>" +
-                   "<td>" + firstPriceShowing + "</td>" +
+                   "<td>" + airlinespriceSymbol.replaceAll("(\\d+)", "<b>$1</b><br>") + "</td>" +
+//                   "<td>" + firstPriceShowing + "</td>" +
                    "<td>" + searchTime + " Sec</td>" +
                    "</tr>" +
                    "</table>" +

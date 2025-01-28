@@ -375,6 +375,7 @@ public class Travomint {
 
 		// Initialize WebDriver
 		WebDriver driver = new ChromeDriver();
+		
 
 		String fileName = "routes.json";
 		StringBuilder emailContent = new StringBuilder(); // Collect results here
@@ -394,7 +395,7 @@ public class Travomint {
 	        
 	     // Append the website title to the email content
 	        emailContent
-//	        .append("<h3>Website Title -> ")
+	        			.append("<h3>")
 	                    .append(WebsiteTitle)
 	                    .append("</h3>");
 	        
