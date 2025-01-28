@@ -287,66 +287,39 @@ public class DataVerification {
 
 			// Flight availability check
 
+			String totalShowing = "No results";
 			String airlinespriceSymbol = "";
 			String firstPriceShowing = "";
-			try {
-				// Wait until the filter for airlines is visible and retrieve its text
-				WebElement filterAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(By
-						.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div[1]/div[2]/div/aside/div/div[5]/div")));
-
-				String flightFilter = filterAirlines.getText(); // Trim any extra spaces
-				airlinespriceSymbol = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
-
-				// Wait for the first price element to be visible and retrieve its text
-				WebElement firstPrice = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-						"/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[6]/div[1]/div/div/div[3]/div[1]/div/span[1]")));
-				String firstShow = firstPrice.getText();
-				firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
-
-			} catch (NoSuchElementException | TimeoutException e) {
-				// Catch the NoSuchElementException and TimeoutException
-				System.out.println("Flight not found: " + e.getMessage());
-				 airlinespriceSymbol = "NA";
-				 firstPriceShowing = "NA";
-			} catch (Exception e) {
-				// Catch any other unexpected exceptions and log them
-				System.out.println("An unexpected error occurred: " + e.getMessage());
-				 airlinespriceSymbol = "NA";
-				 firstPriceShowing = "NA";
-			}
-
-			// Print outside the try-catch block
-			if (!airlinespriceSymbol.isEmpty()) {
-				if (airlinespriceSymbol.contains("INR")) {
-					System.out.println("The currency has been successfully converted to INR: " + airlinespriceSymbol);
-				} else {
-					System.out.println("The currency was not in INR format, found: " + airlinespriceSymbol);
-				}
-			} else {
-				System.out.println("Currency information is not available.");
-			}
-			if (!firstPriceShowing.isEmpty()) {
-				System.out.println("First Airline Price: " + firstPriceShowing);
-			} else {
-				System.out.println("First Airline Price is not available.");
-			}
-
-			String totalShowing = "No results";
 
 			try {
 				// WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
-				WebElement Show = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[5]/div")));
+				WebElement Show = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+						"#__next > div > div > div > div:nth-child(5) > div > div > div.col-xl-7.col-12 > div.flex.justify-between.items-center.w-full.showingResultTextListing.my-\\[15px\\] > div")));
 				totalShowing = Show.getText();
 
 				if (totalShowing.isEmpty()) {
 					System.out.println("No flights found.");
 				} else {
 					System.out.println(totalShowing);
+					WebElement filterAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+							"/html/body/div[1]/div/div/div/div[3]/div/div/div[1]/div[2]/div/aside/div/div[5]/div")));
+
+					String flightFilter = filterAirlines.getText(); // Trim any extra spaces
+					airlinespriceSymbol = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
+
+					// Wait for the first price element to be visible and retrieve its text
+					WebElement firstPrice = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+							"/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[6]/div[1]/div/div/div[3]/div[1]/div/span[1]")));
+					String firstShow = firstPrice.getText();
+					firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
+
 				}
 			} catch (NoSuchElementException e) {
 				System.out.println("Flight not found.");
 				totalShowing = "Flight not found"; // Setting a default value when flight isn't found
+				 airlinespriceSymbol = "NA";
+				 firstPriceShowing = "NA";
+
 
 //        		driver.switchTo().newWindow(WindowType.TAB);
 //        		//SecondRoute.executeSecondRoute(driver, from, to);
@@ -354,6 +327,9 @@ public class DataVerification {
 			} catch (TimeoutException e) {
 				System.out.println("Element not found within the specified timeout.");
 				totalShowing = "Flight not found"; // Timeout occurred, set the default message
+				 airlinespriceSymbol = "NA";
+				 firstPriceShowing = "NA";
+
 
 //        		driver.switchTo().newWindow(WindowType.TAB);
 //        		//SecondRoute.executeSecondRoute(driver, from, to);
@@ -364,6 +340,48 @@ public class DataVerification {
 			double searchTimee = (endTime - startTime) / 1000.0;
 			String searchTime = String.format("%.2f", searchTimee);
 			System.out.println("Flight Search Time: " + searchTime);
+
+//			String airlinespriceSymbol = "";
+//			String firstPriceShowing = "";
+//			try {
+//				// Wait until the filter for airlines is visible and retrieve its text
+//				WebElement filterAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(By
+//						.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div[1]/div[2]/div/aside/div/div[5]/div")));
+//
+//				String flightFilter = filterAirlines.getText(); // Trim any extra spaces
+//				airlinespriceSymbol = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
+//
+//				// Wait for the first price element to be visible and retrieve its text
+//				WebElement firstPrice = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+//						"/html/body/div[1]/div/div/div/div[3]/div/div/div[2]/div[6]/div[1]/div/div/div[3]/div[1]/div/span[1]")));
+//				String firstShow = firstPrice.getText();
+//				firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
+//
+//			} catch (NoSuchElementException | TimeoutException e) {
+//				// Catch the NoSuchElementException and TimeoutException
+//				System.out.println("Flight not found: " + e.getMessage());
+//			} catch (Exception e) {
+//				// Catch any other unexpected exceptions and log them
+//				System.out.println("An unexpected error occurred: " + e.getMessage());
+//			}
+//
+//			// Print outside the try-catch block
+//			if (!airlinespriceSymbol.isEmpty()) {
+//				if (airlinespriceSymbol.contains("INR")) {
+//					System.out.println("The currency has been successfully converted to INR: " + airlinespriceSymbol);
+//				} else {
+//					System.out.println("The currency was not in INR format, found: " + airlinespriceSymbol);
+//				}
+//			} else {
+//				System.out.println("Currency information is not available.");
+//			}
+//			if (!firstPriceShowing.isEmpty()) {
+//				System.out.println("First Airline Price: " + firstPriceShowing);
+//			} else {
+//				System.out.println("First Airline Price is not available.");
+//			}
+//
+//
 
 //			WebElement fareAlert = wait.until(
 //					ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div/div/button[2]")));

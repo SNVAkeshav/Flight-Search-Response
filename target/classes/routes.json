@@ -1,6 +1,6 @@
 [
   { "from": "AMD", "to": "BLR" },
-  { "from": "DEL", "to": "IXC" },
+  { "from": "DEL", "to": "PAB" },
   { "from": "BOM", "to": "MAA" },
   { "from": "HYD", "to": "PNQ" },
   { "from": "CCU", "to": "GOI" }

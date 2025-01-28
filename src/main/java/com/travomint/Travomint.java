@@ -393,7 +393,8 @@ public class Travomint {
 	        System.out.println(" ");
 	        
 	     // Append the website title to the email content
-	        emailContent.append("<h3>Website Title -> ")
+	        emailContent
+//	        .append("<h3>Website Title -> ")
 	                    .append(WebsiteTitle)
 	                    .append("</h3>");
 	        
