@@ -17,35 +17,35 @@ public class automationCapt {
         Thread.sleep(2000);
         String title = driver.getTitle();
         System.out.println("The title of the website is "+title);
-//         Login Credentials
-         Thread.sleep(2000);
-         driver.findElement(By.xpath("/html/body/div[1]/div/header/nav/div/ul/li[2]/button")).click();
-		
-		Thread.sleep(3000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).click();
-		
-		Thread.sleep(2000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).sendKeys("keshav@snva.com");
-		
-		Thread.sleep(2000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[2]/button")).click();
-		
-		Thread.sleep(6000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).click();
-		
-		Thread.sleep(2000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).sendKeys("Keshav@123");
-		
-		Thread.sleep(2000);
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[2]/button")).click();
-		
-		System.out.println("Login Successfully");
+////         Login Credentials
+//         Thread.sleep(2000);
+//         driver.findElement(By.xpath("/html/body/div[1]/div/header/nav/div/ul/li[2]/button")).click();
+//		
+//		Thread.sleep(3000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).click();
+//		
+//		Thread.sleep(2000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).sendKeys("keshav@snva.com");
+//		
+//		Thread.sleep(2000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[2]/button")).click();
+//		
+//		Thread.sleep(6000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).click();
+//		
+//		Thread.sleep(2000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[1]/input")).sendKeys("Keshav@123");
+//		
+//		Thread.sleep(2000);
+//		
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/form/div[2]/button")).click();
+//		
+//		System.out.println("Login Successfully");
 		
 		
 		Thread.sleep(10000);
@@ -53,6 +53,15 @@ public class automationCapt {
         driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[1]/label[2]/span[1]")).click();
         System.out.println("Round trip selected successfully");
         driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[4]/div/div[1]/div/div[1]/div")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div/div[1]/div")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div[1]/div/div[2]/div/button[2]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div[1]/div/div[3]/table/tbody/tr[2]/td[2]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div[1]/div/div[3]/table/tbody/tr[3]/td[4]")).click();
+        Thread.sleep(2000);
+
         //Add adult
         Thread.sleep(3000);
         for(int i = 2; i < 6; i++) {
