@@ -231,8 +231,8 @@ public class InternationalRoundTrip {
 //                  
 			String x_INTER_DXB = "DXB";
 			String x_INTER_NYC = "NYC";
-			String departShowing = "Flight not found";
-			String returnShowing = "Flight not found";
+			String departShowing = "";
+			String returnShowing = "";
 			String availableAirlinesOnListing = "";
 			
 			
@@ -248,6 +248,7 @@ public class InternationalRoundTrip {
 									"#__next > div > div > div > div.oneway-flres.position-relative.pb-0 > div > div > div > div.col-xl-7.col-12 > div.flex.justify-between.items-center.w-full.showingResultTextListing > div")));
 					 returnShowing = flights_international.getText();
 					 if (returnShowing.isEmpty()) {
+						 returnShowing = "Flight not found";
 							System.out.println("Flight not found");
 						} else {
 					System.out.println("flightsxinternational: " + returnShowing);
@@ -298,16 +299,17 @@ public class InternationalRoundTrip {
 					WebElement domesticDepart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span")));
 					 departShowing = domesticDepart.getText();
-					 if (departShowing.isEmpty() || (returnShowing.isEmpty())) {
-							System.out.println("No flights found.");
-						} else {
+					  
 					WebElement domesticReturn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[1]/div/div/div/span")));
 					 returnShowing = domesticReturn.getText();
-					if (departShowing != null && returnShowing != null) {
-						System.out.println("Depart flights Showing : " + departShowing);
-						System.out.println("Return flights Showing : " + returnShowing);
-					}
+					 if (departShowing.isEmpty() || (returnShowing.isEmpty())) {
+						 departShowing ="Flight not found";
+						 returnShowing = "Flight not found";
+						 System.out.println(departShowing + "\n" + returnShowing);
+
+						}
+					 else {
 					WebElement AvailableAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(
 							By.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div/div[1]/div/div/div[6]/div[2]")));
 
