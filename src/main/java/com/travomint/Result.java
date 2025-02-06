@@ -6,16 +6,19 @@ class Result {
         private String tripSelection;
         private String fromWidget;
         private String toWidget;
-        private String calenderWidget;
-        private String travelerWidget;
+        private String departDate;
+        private String returnDateWidget;
+        private String travelerAndClassOnWidget;
         private String currencyOnListing;
         private String listingTripType;
         private String fromOnListing;
         private String toOnListingPage;
-        private String totalShowing;
-        private String calenderModified;
-        private String travelerModified;
-        private String airlinespriceSymbol;
+        private String departShowing;
+        private String returnShowing;
+        private String departDateOnListing;
+        private String returnDateOnListing;
+        private String travelerAndClassOnListing;
+        private String availableAirlinesOnListing;
 //        private String firstPriceShowing;
         private String searchTime;
         
@@ -35,11 +38,14 @@ class Result {
         public void setTOWidget(String toWidget) {
             this.toWidget = toWidget;
         }
-        public void setCalenderWidget(String calenderWidget) {
-            this.calenderWidget = calenderWidget;
+        public void setDepartDate(String departDate) {
+            this.departDate = departDate;
         }
-        public void setTravelerWidget(String travelerWidget) {
-            this.travelerWidget = travelerWidget;
+        public void setReturnDateWidget(String returnDateWidget) {
+            this.returnDateWidget = returnDateWidget;
+        }
+        public void setTravelerAndClassOnWidget(String travelerAndClassOnWidget) {
+            this.travelerAndClassOnWidget = travelerAndClassOnWidget;
         }
         public void setCurrencyOnListing(String currencyOnListing) {
         	this.currencyOnListing = currencyOnListing;
@@ -53,17 +59,23 @@ class Result {
         public void setToOnListingPage(String toOnListingPage) {
             this.toOnListingPage = toOnListingPage;
         }
-        public void setTotalShowing(String totalShowing) {
-            this.totalShowing = totalShowing;
+        public void setDepartShowing(String departShowing) {
+            this.departShowing = departShowing;
         }
-        public void setCalenderModified(String calenderModified) {
-            this.calenderModified = calenderModified;
+        public void setReturnShowing(String returnShowing) {
+            this.returnShowing = returnShowing;
         }
-        public void settravelerModified(String travelerModified) {
-            this.travelerModified = travelerModified;
+        public void setDepartDateOnListing(String departDateOnListing) {
+            this.departDateOnListing = departDateOnListing;
         }
-        public void setAirlinespriceSymbol(String airlinespriceSymbol) {
-        	this.airlinespriceSymbol = airlinespriceSymbol;
+        public void setReturnDateOnListing(String returnDateOnListing) {
+            this.returnDateOnListing = returnDateOnListing;
+        }
+        public void setTravelerAndClassOnListing(String travelerAndClassOnListing) {
+            this.travelerAndClassOnListing = travelerAndClassOnListing;
+        }
+        public void setAvailableAirlinesOnListing(String availableAirlinesOnListing) {
+        	this.availableAirlinesOnListing = availableAirlinesOnListing;
         }
 //        public void setFirstPriceShowing(String firstPriceShowing) {
 //        	this.firstPriceShowing = firstPriceShowing;
@@ -72,134 +84,7 @@ class Result {
             this.searchTime = searchTime;
         }
         
-        // Overriding toString method to print all results in one go
-       // @Override
-//        public String toString() {
-//            return "<html>" +
-//                   "<body>" +
-//                   "<h2 style='color:blue;'>Input in Widget</h2>" +
-//                   "<table border='1' style='border-collapse: collapse; width: 50%; text-align: left;'>" +
-//                   "<tr><th style='background-color: lightgray;'>Field</th><th>Details</th></tr>" +
-//                   "<tr><td><strong>Website Title</strong></td><td>" + title + "</td></tr>" +
-//                   "<tr><td><strong>Widget -> From</strong></td><td>" + text1 + "</td></tr>" +
-//                   "<tr><td><strong>Widget -> To</strong></td><td>" + fromWidget + "</td></tr>" +
-//                   "<tr><td><strong>Date on Widget</strong></td><td>" + calenderWidget + "</td></tr>" +
-//                   "<tr><td><strong>Traveler(s) & Class on Widget</strong></td><td>" + travelerWidget + "</td></tr>" +
-//                   "</table>" +
-//                   "<hr>" +
-//                   "<h2 style='color:orange;'>Result on Listing</h2>" +
-//                   "<table border='1' style='border-collapse: collapse; width: 50%; text-align: left;'>" +
-//                   "<tr><th style='background-color: lightgray;'>Field</th><th>Details</th></tr>" +
-//                   "<tr><td><strong>Listing -> From</strong></td><td>" + text2 + "</td></tr>" +
-//                   "<tr><td><strong>Listing -> To</strong></td><td>" + fromDestination + "</td></tr>" +
-//                   "<tr><td><strong>Search Response Time</strong></td><td>" + searchTime + " Seconds</td></tr>" +
-//                   "<tr><td><strong>Total Flights Showing on Listing Page</strong></td>" +
-//                   "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td></tr>" +
-//                   "<tr><td><strong>Date on Listing</strong></td><td>" + calenderModified + "</td></tr>" +
-//                   "<tr><td><strong>Traveler(s) & Class on Listing</strong></td><td>" + travelerModified + "</td></tr>" +
-//                   "</table>" +
-//                   "<p style='color: gray;'>Best Regards,<br>" +
-//                   "<strong>Keshav</strong><br>" +
-//                   "</body>" +
-//                   "</html>";
-//        }
-//
-//    }
-        
-        //@Override
-//        public String toString() {
-//            return "<html>" +
-//                   "<body>" +
-//                   "<h2 style='color:blue;'>Widget</h2>" +
-//                   "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>" +
-//                   "<tr style='background-color: orange;'>" +
-//                   "<th>Website Title</th>" +
-//                   "<th>From</th>" +
-//                   "<th>To</th>" +
-//                   "<th>Date</th>" +
-//                   "<th>Traveler(s) & Class</th>" +
-//                   "</tr>" +
-//                   "<tr>" +
-//                   "<td>" + title + "</td>" +
-//                   "<td>" + text1 + "</td>" +
-//                   "<td>" + fromWidget + "</td>" +
-//                   "<td>" + calenderWidget + "</td>" +
-//                   "<td>" + travelerWidget + "</td>" +
-//                   "</tr>" +
-//                   "</table>" +
-////                   "<hr>" +
-//                   "<h2 style='color:blue;'>Listing</h2>" +
-//                   "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>" +
-//                   "<tr style='background-color: orange;'>" +
-//                   "<th>From</th>" +
-//                   "<th>To</th>" +
-//                   "<th>Date</th>" +
-//                   "<th>Traveler(s) & Class</th>" +
-//                   "<th>Total Flights Showing</th>" +
-//                   "<th>Search Response Time</th>" +
-//                   "</tr>" +
-//                   "<tr>" +
-//                   "<td>" + text2 + "</td>" +
-//                   "<td>" + fromDestination + "</td>" +
-//                   "<td>" + calenderModified + "</td>" +
-//                   "<td>" + travelerModified + "</td>" +
-//                   "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
-//                   "<td>" + searchTime + " Seconds</td>" +
-//                   "</tr>" +
-//                   "</table>" +
-//                   "<p style='color: gray;'>Best Regards,<br>" +
-//                   "<strong>Keshav</strong><br>" +
-//                   "</body>" +
-//                   "</html>";
-//        }
-//}
-//        @Override
-//        public String toString() {
-//            return "<html>" +
-//                   "<body>" +
-//                   "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>" +
-//                   // Header Row
-//                   "<tr style='background-color: orange;'>" +
-//                   "<th>Route</th>" +
-//                   "<th>Website Title</th>" +
-//                   "<th>From</th>" +
-//                   "<th>To</th>" +
-//                   "<th>Date</th>" +
-//                   "<th>Traveler(s) & Class</th>" +
-//                   "<th>Total Flights Showing</th>" +
-//                   "<th>Search Response Time</th>" +
-//                   "</tr>" +
-//
-//                   // Widget Row
-//                   "<tr>" +
-//                   "<th>Widget</th>" +
-//                   "<td>" + title + "</td>" +
-//                   "<td>" + text1 + "</td>" +
-//                   "<td>" + fromWidget + "</td>" +
-//                   "<td>" + calenderWidget + "</td>" +
-//                   "<td>" + travelerWidget + "</td>" +
-//                   "<td colspan='2'></td>" + // Empty cells for Widget row
-//                   "</tr>" +
-//
-//                   // Listing Row
-//                   "<tr>" +
-//                   "<th>Listing</th>" +
-//                   "<td></td>" + // Empty cell for Website Title in Listing row
-//                   "<td>" + text2 + "</td>" +
-//                   "<td>" + fromDestination + "</td>" +
-//                   "<td>" + calenderModified + "</td>" +
-//                   "<td>" + travelerModified + "</td>" +
-//                   "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
-//                   "<td>" + searchTime + " Seconds</td>" +
-//                   "</tr>" +
-//                   "</table>" +
-////                   "<p style='color: black;'>Automatic mail for flights<br>" +
-////                   "<strong>Keshav</strong></p>" +
-//					"<br></br>"+
-//                   "</body>" +
-//                   "</html>";
-//        }
-//}
+
         
         @Override
         public String toString() {
@@ -229,9 +114,11 @@ class Result {
                    "<th>Trip Type</th>" +
                    "<th>From</th>" +
                    "<th>To</th>" +
-                   "<th>Date</th>" +
+                   "<th>Dep. Date</th>" +
+                   "<th>Return Date</th>" +
                    "<th>Traveler(s) & Class</th>" +
-                   "<th>Total Flights Showing</th>" +
+                   "<th>Dep. Showing</th>" +
+                   "<th>Return Showing</th>" +
                    "<th>Available Airlines</th>" +
 //                   "<th>First Airline Price</th>" +
                    "<th>Search Time</th>" +
@@ -245,8 +132,10 @@ class Result {
                    "<td>" + tripSelection + "</td>" +
                    "<td>" + fromWidget + "</td>" +
                    "<td>" + toWidget + "</td>" +
-                   "<td>" + calenderWidget + "</td>" +
-                   "<td>" + travelerWidget + "</td>" +
+                   "<td>" + departDate + "</td>" +
+                   "<td>" + returnDateWidget + "</td>" +
+                   "<td>" + travelerAndClassOnWidget + "</td>" +
+                   "<td style = 'text-align: center;'> NA </td>"  + // Empty cells for Widget row
                    "<td style = 'text-align: center;'> NA </td>"  + // Empty cells for Widget row
                    "<td style = 'text-align: center;'> NA </td>" + // Empty cells for Widget row
 //                   "<td style = 'text-align: center;'> NA </td>"  +
@@ -261,10 +150,12 @@ class Result {
                    "<td>" + listingTripType + "</td>" +
                    "<td>" + fromOnListing + "</td>" +
                    "<td>" + toOnListingPage + "</td>" +
-                   "<td>" + calenderModified + "</td>" +
-                   "<td>" + travelerModified + "</td>" +
-                   "<td style='color:" + (totalShowing.equals("Flight not found") ? "red" : "green") + ";'>" + totalShowing + "</td>" +
-                   "<td>" + airlinespriceSymbol.replaceAll("(\\d+)", "<b>$1</b><br>") + "</td>" +
+                   "<td>" + departDateOnListing + "</td>" +
+                   "<td>" + returnDateOnListing + "</td>" +
+                   "<td>" + travelerAndClassOnListing + "</td>" +
+                   "<td style='color:" + (departShowing.equals("Flight not found") ? "red" : "green") + ";'>" + departShowing + "</td>" +
+                   "<td style='color:" + (returnShowing.equals("Flight not found") ? "red" : "green") + ";'>" + returnShowing + "</td>" +
+                   "<td>" + availableAirlinesOnListing.replaceAll("(\\d+)", "<b>$1</b><br>") + "</td>" +
 //                   "<td>" + firstPriceShowing + "</td>" +
                    "<td>" + searchTime + " Sec</td>" +
                    "</tr>" +

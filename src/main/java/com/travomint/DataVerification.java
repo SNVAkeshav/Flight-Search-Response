@@ -87,6 +87,7 @@ public class DataVerification {
 
 			WebElement tripType = driver.findElement(By.xpath(
 					"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[1]/label[1]/span[2]"));
+			tripType.click();
 			String tripSelection = tripType.getText();
 			System.out.println("Current selected trip type is: " + tripSelection);
 
@@ -163,7 +164,7 @@ public class DataVerification {
 
 			WebElement date = driver.findElement(By.xpath(
 					"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div/div[1]/div/div[1]/div"));
-			String CalenderWidget = date.getText();
+			String departDate = date.getText();
 
 			// From Widget xpath using comparison
 
@@ -173,8 +174,8 @@ public class DataVerification {
 					"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[4]/div/div[1]/div"));
 			String travelWidgett = travelerW.getText();
 			String travelWidgettt = travelWidgett.replace("Traveler(s) & Class", "");
-			String travelWidget = travelWidgettt.replace("Traveler", "Traveler,");
-			System.out.println("Widget travelers: " + travelWidget);
+			String travelerAndClassOnWidget = travelWidgettt.replace("Traveler", "Traveler,");
+			System.out.println("Widget travelers: " + travelerAndClassOnWidget);
 
 			// Search Button Clicked
 
@@ -259,10 +260,10 @@ public class DataVerification {
 
 			WebElement CalenderM = driver.findElement(
 					By.xpath("/html/body/div[1]/div/div/div/div[1]/div/div[3]/div[3]/div/div[1]/div/div[1]/div"));
-			String CalenderModified = CalenderM.getText();
+			String departDateOnListing = CalenderM.getText();
 
-			if (CalenderWidget.equals(CalenderModified)) {
-				System.out.println("Widget and Listing Date are same   " + CalenderWidget + " " + CalenderModified);
+			if (departDate.equals(departDateOnListing)) {
+				System.out.println("Widget and Listing Date are same   " + departDate + " " + departDateOnListing);
 			} else {
 				System.out.println("Date is not same ");
 			}
@@ -273,12 +274,12 @@ public class DataVerification {
 					.findElement(By.xpath("/html/body/div[1]/div/div/div/div[1]/div/div[3]/div[4]/div/div[1]/div"));
 			String travelerModifiedd = TravelersM.getText();
 			String travelerModifieddd = travelerModifiedd.replace("Traveler(s) & Class", "");
-			String travelerModified = travelerModifieddd.replace("Traveler", "Traveler,");
+			String travelerAndClassOnListing = travelerModifieddd.replace("Traveler", "Traveler,");
 
-			System.out.println("Travelers on listing: " + travelerModified);
+			System.out.println("Travelers on listing: " + travelerAndClassOnListing);
 
-			if (travelWidget.equals(travelerModified)) {
-				System.out.println("Traveler is matched: " + travelerModified);
+			if (travelerAndClassOnWidget.equals(travelerAndClassOnListing)) {
+				System.out.println("Traveler is matched: " + travelerAndClassOnListing);
 			} else {
 				System.out.println("Traveler is not Matched");
 			}
@@ -289,26 +290,29 @@ public class DataVerification {
 
 			// Flight availability check
 
-			String totalShowing = "No results";
-			String airlinespriceSymbol = "";
+			String departShowing = "No results";
+			String returnShowing = "NA";
+			String availableAirlinesOnListing = "";
+			String returnDateWidget = "NA";
+			String returnDateOnListing = "NA";
 			//String firstPriceShowing = "";
 
 			try {
 				// WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 				WebElement Show = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
 						"#__next > div > div > div > div:nth-child(5) > div > div > div.col-xl-7.col-12 > div.flex.justify-between.items-center.w-full.showingResultTextListing.my-\\[15px\\] > div")));
-				totalShowing = Show.getText();
+				departShowing = Show.getText();
 
-				if (totalShowing.isEmpty()) {
+				if (departShowing.isEmpty()) {
 					System.out.println("No flights found.");
 				} else {
-					System.out.println(totalShowing);
+					System.out.println(departShowing);
 					WebElement filterAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
 							"/html/body/div[1]/div/div/div/div[3]/div/div/div[1]/div[2]/div/aside/div/div[5]/div")));
 
 					String flightFilter = filterAirlines.getText(); // Trim any extra spaces
-					airlinespriceSymbol = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
-			        String[] arr = airlinespriceSymbol.split(" ");
+					availableAirlinesOnListing = flightFilter.replace("₹", "INR"); // Replace ₹ with INR
+			        String[] arr = availableAirlinesOnListing.split(" ");
 			        List<String> newArr = new ArrayList<>();
 			        for (String word : arr) {
 			            newArr.add(word.replace(",", ""));
@@ -329,8 +333,8 @@ public class DataVerification {
 			            }
 			        }
 			        for (Map.Entry<Integer, String> entry : obj.entrySet()) {
-			        	airlinespriceSymbol = entry.getValue();
-			            System.out.println(airlinespriceSymbol);
+			        	availableAirlinesOnListing = entry.getValue();
+			            System.out.println("availableAirlinesOnListing: " + availableAirlinesOnListing);
 			        }
 
 
@@ -343,8 +347,8 @@ public class DataVerification {
 				}
 			} catch (NoSuchElementException e) {
 				System.out.println("Flight not found.");
-				totalShowing = "Flight not found"; // Setting a default value when flight isn't found
-				 airlinespriceSymbol = "NA";
+				departShowing = "Flight not found"; // Setting a default value when flight isn't found
+				availableAirlinesOnListing = "NA";
 //				 firstPriceShowing = "NA";
 
 
@@ -353,8 +357,8 @@ public class DataVerification {
 //        		DataVerification.executeVerifiedData(driver, from, to);
 			} catch (TimeoutException e) {
 				System.out.println("Element not found within the specified timeout.");
-				totalShowing = "Flight not found"; // Timeout occurred, set the default message
-				 airlinespriceSymbol = "NA";
+				departShowing = "Flight not found"; // Timeout occurred, set the default message
+				availableAirlinesOnListing = "NA";
 //				 firstPriceShowing = "NA";
 
 
@@ -421,16 +425,19 @@ public class DataVerification {
 			result.setTripSelection(tripSelection);
 			result.setFromWidget(fromWidget);
 			result.setTOWidget(toWidget);
-			result.setCalenderWidget(CalenderWidget);
-			result.setTravelerWidget(travelWidget);
+			result.setDepartDate(departDate);
+			result.setReturnDateWidget(returnDateWidget);
+			result.setTravelerAndClassOnWidget(travelerAndClassOnWidget);
 			result.setCurrencyOnListing(currencyOnListing);
 			result.setListingTripType(listingTripType);
 			result.setFromOnListing(fromOnListing);
 			result.setToOnListingPage(toOnListingPage);
-			result.setTotalShowing(totalShowing);
-			result.setCalenderModified(CalenderModified);
-			result.settravelerModified(travelerModified);
-			result.setAirlinespriceSymbol(airlinespriceSymbol);
+			result.setDepartShowing(departShowing);
+			result.setReturnShowing(returnShowing);
+			result.setDepartDateOnListing(departDateOnListing);
+			result.setReturnDateOnListing(returnDateOnListing);
+			result.setTravelerAndClassOnListing(travelerAndClassOnListing);
+			result.setAvailableAirlinesOnListing(availableAirlinesOnListing);
 //			result.setFirstPriceShowing(firstPriceShowing);
 			result.setsearchTime(searchTime);
 			return result.toString();
