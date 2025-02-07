@@ -655,6 +655,9 @@ package com.travomint;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -700,8 +703,28 @@ public class Travomint {
             driver.get("https://www.travomint.com/");
             String websiteTitle = driver.getTitle();
             System.out.println("Website Title - " + websiteTitle);
+            
+//    		LocalDate currentDate = LocalDate.now();
+//    		System.out.println("currentDate "+ currentDate);
+    		LocalDateTime currentDateTime = LocalDateTime.now();
 
-            emailContent.append("<h3>").append(websiteTitle).append("</h3>");
+            // Define the format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+            // Format the date and time
+            String formattedDateTime = currentDateTime.format(formatter);
+
+            // Print the current date and time
+            System.out.println("Current Date and Time: " + formattedDateTime);
+    		
+            emailContent
+            			.append("<h3>")
+            			.append(websiteTitle)
+            			.append("</h3>")
+            			.append("</br>")
+            			.append("<p>Route Search Date & Time: ")
+            			.append(formattedDateTime);
+            			
 
             ObjectMapper objectMapper = new ObjectMapper();
             List<Map<String, String>> routes = objectMapper.readValue(inputStream, new TypeReference<>() {});
