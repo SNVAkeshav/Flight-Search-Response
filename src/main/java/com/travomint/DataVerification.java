@@ -455,7 +455,7 @@ public class DataVerification {
 	public static void sendEmail(String to, String cc, String bcc, String subject, String body)
 			throws MessagingException, UnsupportedEncodingException {
 		final String from = "automation@travomint.com";
-		final String password = "Travomint@1234"; // Replace with your email password or use environment variables
+		final String password = "Password"; // Replace with your email password or use environment variables
 		if (from == null || password == null) {
 			System.err.println("Email credentials are missing.");
 			return;

@@ -1,0 +1,7 @@
+[
+  { "from": "AMD", "to": "BLR" },
+  { "from": "DEL", "to": "DXB" },
+  { "from": "BOM", "to": "MAA" },
+  { "from": "HYD", "to": "PNQ" },
+  { "from": "NYC", "to": "DXB" }
+]
