@@ -1,7 +1,7 @@
 [
-  { "from": "AMD", "to": "BLR" },
-  { "from": "DEL", "to": "DXB" },
-  { "from": "BOM", "to": "MAA" },
-  { "from": "HYD", "to": "PNQ" },
-  { "from": "NYC", "to": "DXB" }
+  { "from": "NYC", "to": "LHR" },
+  { "from": "MIA", "to": "JFK" },
+  { "from": "ORD", "to": "LGA" },
+  { "from": "DXB", "to": "SIN" },
+  { "from": "LGA", "to": "MIA" }
 ]

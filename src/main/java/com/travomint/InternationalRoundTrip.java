@@ -17,6 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,8 @@ public class InternationalRoundTrip {
 	public static String executeVerifiedInternationalRoundTrip(WebDriver driver, String from, String to)
 			throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
 		
 		try {
 			// Maximize the browser window
@@ -381,6 +384,10 @@ public class InternationalRoundTrip {
 			result.setsearchTime(searchTime);
 			return result.toString();
 		} finally {
+//	        js.executeScript("window.localStorage.clear(); window.sessionStorage.clear();");
+//	        driver.manage().deleteAllCookies();
+//	        System.out.println("Website cache cleared successfully!");
+//	        driver.navigate().refresh();
 			System.out.println("---------------------------Route Searched successfully.---------------------------");
 			
 		}

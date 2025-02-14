@@ -18,6 +18,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ public class DataVerification {
 	@SuppressWarnings("unused")
 	public static String executeVerifiedData(WebDriver driver, String from, String to) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		   JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		try {
 
@@ -345,7 +347,8 @@ public class DataVerification {
 //					firstPriceShowing = firstShow.replace("₹", "INR"); // Trim spaces here too
 
 				}
-			} catch (NoSuchElementException e) {
+			} 
+			catch (NoSuchElementException e) {
 				System.out.println("Flight not found.");
 				departShowing = "Flight not found"; // Setting a default value when flight isn't found
 				availableAirlinesOnListing = "NA";
@@ -355,7 +358,8 @@ public class DataVerification {
 //        		driver.switchTo().newWindow(WindowType.TAB);
 //        		//SecondRoute.executeSecondRoute(driver, from, to);
 //        		DataVerification.executeVerifiedData(driver, from, to);
-			} catch (TimeoutException e) {
+			} 
+			catch (TimeoutException e) {
 				System.out.println("Element not found within the specified timeout.");
 				departShowing = "Flight not found"; // Timeout occurred, set the default message
 				availableAirlinesOnListing = "NA";
@@ -444,7 +448,12 @@ public class DataVerification {
 
 		} finally {
 			// Close the browser after the task
-			// driver.quit();
+			// driver.quit();.
+//	        js.executeScript("window.localStorage.clear(); window.sessionStorage.clear();");
+//	        driver.manage().deleteAllCookies();
+//	        System.out.println("Website cache cleared successfully!");
+//	        driver.navigate().refresh();
+	        
 			System.out.println("---------------------------Route Searched successfully.---------------------------");
 		}
 

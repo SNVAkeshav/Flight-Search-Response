@@ -1,0 +1,12 @@
+[
+
+ { "from": "ORD", "to": "VIG" },
+
+ { "from": "EWR", "to": "VIG" },
+
+ { "from": "DEL", "to": "MIA" },
+
+ { "from": "NYC", "to": "MIA" },
+
+ { "from": "LAX", "to": "LHR" }
+]

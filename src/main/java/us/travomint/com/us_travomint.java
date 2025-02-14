@@ -2,7 +2,6 @@ package us.travomint.com;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -45,7 +44,7 @@ public class us_travomint {
             if (inputStream == null) {
                 System.err.println("File not found: " + fileName);
                 return;
-            }
+            }	
 
             driver.get("https://www.travomint.com/");
             String websiteTitle = driver.getTitle();
@@ -94,10 +93,10 @@ public class us_travomint {
 
                     if (random.nextBoolean()) {
                         processName = "One Way";
-                        result = DataVerification.executeVerifiedData(driver, from, to);
+                        result = oneWay.verifiedOneWay(driver, from, to);
                     } else {
                         processName = "Round Trip";
-                        result = InternationalRoundTrip.executeVerifiedInternationalRoundTrip(driver, from, to);
+                        result = roundTrip.verifiedRoundTrip(driver, from, to);
                     }
 
                     emailContent
@@ -138,12 +137,12 @@ public class us_travomint {
             }
 
             emailContent.append("<p style='color: gray;'>Best Regards,<br><strong>Testing Team</strong></p>")
-                        .append("<a href='https://www.travomint.com' target='_blank'>")
+                        .append("<a href='https://us.travomint.com/' target='_blank'>")
                         .append("<img src='https://www.travomint.com/Image/logo.png' alt='Testing Team' style='width:146px; height:30px;'></a>")
                         .append("</body></html>");
             
             failedRoutesContent.append("<p style='color: gray;'>Best Regards,<br><strong>Testing Team</strong></p>")
-            				   .append("<a href='https://www.travomint.com' target='_blank'>")
+            				   .append("<a href='https://us.travomint.com/' target='_blank'>")
             				   .append("<img src='https://www.travomint.com/Image/logo.png' alt='Testing Team' style='width:146px; height:30px;'></a>")
             				   .append("</body></html>");
 
@@ -155,13 +154,13 @@ public class us_travomint {
             }
 
             try {
-                InternationalRoundTrip.sendEmail("keshav@snva.com", "snvatesting@gmail.com,sanket.mishra@snva.com", "snvaqc@gmail.com",
-                        "Automated Scheduled Flight Response - Travomint.com", emailContent.toString());
+            	roundTrip.sendEmail("keshav@snva.com", "snvatesting@gmail.com,sanket.mishra@snva.com", "snvaqc@gmail.com",
+                        "us.travomint.com", emailContent.toString());
                 System.out.println("Email sent successfully!");
 
                 if (hasFailures) {
-                    InternationalRoundTrip.sendEmail("keshav@snva.com", "snvatesting@gmail.com,sanket.mishra@snva.com", "snvaqc@gmail.com",
-                            "⚠️ Attention !!! Some Processes Failed", failedRoutesContent.toString());
+                	roundTrip.sendEmail("keshav@snva.com", "snvatesting@gmail.com,sanket.mishra@snva.com", "snvaqc@gmail.com",
+                            "⚠️ Attention !!! Some Processes Failed(us.travomint.com)", failedRoutesContent.toString());
                     System.out.println("Failure alert email sent!");
                 }
             } catch (Exception e) {

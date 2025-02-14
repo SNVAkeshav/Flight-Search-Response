@@ -1,6 +1,7 @@
 package com.newautomate;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,48 +18,42 @@ public class SelectFutureDates {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.travomint.com/"); // Replace with actual site if different
+		// Calendar selection
 
-		// Click on the date picker to open the calendar
-		driver.findElement(By.id("departure")).click(); // Update with actual datepicker ID or XPath
-		Thread.sleep(2000); // Wait for calendar to open
+		WebElement Calender = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div/div[1]/div"));
+		Calender.click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[3]/div[1]/div/div[1]/div/button[2]"))
+				.click();
+		Thread.sleep(3000);
 
-        LocalDateTime currentDateTime = LocalDateTime.now();
+		// Date selection
 
-        // Define the format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[5]"))
+				.click();
+		System.out.println("From Date Successfully Selected.");
 
-        // Format the date and time
-        String formattedDateTime = currentDateTime.format(formatter);
+		WebElement date = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div/div[1]/div/div[1]/div"));
+		String departDate = date.getText();
+		Thread.sleep(4000);
 
-        // Print the current date and time
-        System.out.println("Current Date and Time: " + formattedDateTime);
-		// Get the current date
-		LocalDate currentDate = LocalDate.now();
-		System.out.println("currentDate "+ currentDate);
-		int[] daysToAdd = { 5, 10, 15, 20 };
+		driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div/div[2]/div[4]/div/div[2]/button"))
+				.click();
+		
+		Thread.sleep(6000);
 
-		for (int days : daysToAdd) {
-			LocalDate futureDate = currentDate.plusDays(days);
-			System.out.println("futureDate " + futureDate);
-			int day = futureDate.getDayOfMonth(); // Extract day (e.g., 10, 15, etc.)
-			System.out.println("day " + day);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.clear(); window.sessionStorage.clear();");
+        driver.manage().deleteAllCookies();
+        System.out.println("Website cache cleared successfully!");
 
-			// Find the date in the calendar and click
-			List<WebElement> dates = driver.findElements(By.xpath(
-					"/html/body/div[1]/div/div[3]/div/section[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/td[6]")); // Update
-				
-			//System.out.println("dates " + dates);																																// XPath
-			for (WebElement date : dates) {
-				if (date.getText().equals(String.valueOf(day))) {
-					date.click();
-					System.out.println("Selected Date: " + futureDate);
-					Thread.sleep(1000); // Small delay between selections
-					break;
-				}
-			}
-		}
+        // Reload the page after clearing cache
+        driver.navigate().refresh();
 
-		// Close browser
-		//driver.quit();
 	}
 }
