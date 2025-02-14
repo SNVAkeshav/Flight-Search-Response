@@ -29,7 +29,7 @@ public class InternationalRoundTrip {
 	@SuppressWarnings({ "unused" })
 	public static String executeVerifiedInternationalRoundTrip(WebDriver driver, String from, String to)
 			throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		
@@ -227,7 +227,7 @@ public class InternationalRoundTrip {
 			}
 //                  Traveler and class compared Widget  and listing    
 			if (travelerAndClassOnWidget.equals(travelerAndClassOnListing)) {
-				System.out.print("Travelers and class matched widget and listing :" + travelerAndClassOnListing);
+				System.out.println("Travelers and class matched widget and listing :" + travelerAndClassOnListing);
 			} else {
 				System.err.println("Travelers and class not matched");
 			}
@@ -300,12 +300,14 @@ public class InternationalRoundTrip {
 			} else {
 				try {
 					WebElement domesticDepart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span")));
+							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[3]/div/div[2]/div[1]/div/div/div/span")));
 					 departShowing = domesticDepart.getText();
+					 System.out.println("departShowing: " + departShowing);
 					  
 					WebElement domesticReturn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[1]/div/div/div/span")));
+							"/html/body/div[1]/div/div/div/div[3]/div/div/div/div[2]/div[3]/div/div[3]/div[1]/div/div/div/span")));
 					 returnShowing = domesticReturn.getText();
+					 System.out.println("returnShowing: " + returnShowing);
 					 if (departShowing.isEmpty() || (returnShowing.isEmpty())) {
 						 departShowing ="Flight not found";
 						 returnShowing = "Flight not found";
@@ -314,7 +316,7 @@ public class InternationalRoundTrip {
 						}
 					 else {
 					WebElement AvailableAirlines = wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div/div[1]/div/div/div[6]/div[2]")));
+							By.xpath("/html/body/div[1]/div/div/div/div[3]/div/div/div/div[1]/div[2]/div/div[6]/div[2]")));
 
 					String availableAirlines = AvailableAirlines.getText();
 					availableAirlinesOnListing = availableAirlines.replace("₹", "INR"); // Replace ₹ with INR
@@ -340,7 +342,7 @@ public class InternationalRoundTrip {
 			        }
 			        for (Map.Entry<Integer, String> entry : obj.entrySet()) {
 			        	availableAirlinesOnListing = entry.getValue();
-			            System.out.println("availableAirlineOnListingWithCurrency" + availableAirlinesOnListing);
+			            System.out.println("availableAirlineOnListingWithCurrency: "+ "\n" + availableAirlinesOnListing);
 			        }
 						}
 					

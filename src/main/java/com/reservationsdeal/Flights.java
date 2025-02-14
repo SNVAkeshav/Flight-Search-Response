@@ -93,10 +93,11 @@ public class Flights {
 			System.out.println("To Destination Input");
 
 			js.executeScript("window.scrollBy(0, 180);");
+			Thread.sleep(1000);
 			// Calendar Select (Travel Date)
-			WebElement datePicker = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-					"/html/body/div[4]/div[2]/div/div[2]/div/form/div/div/div/div/div[2]/div[2]/div[1]/div/input")));
+			WebElement datePicker = wait.until(ExpectedConditions.elementToBeClickable(By.name("departDate")));
 			datePicker.click();
+			
 			Thread.sleep(3000);
 			WebElement nextmonth = driver
 					.findElement(By.xpath("/html/body/section[7]/div/div[2]/section/div[1]/div[2]/button[2]"));

@@ -686,7 +686,7 @@ public class Travomint {
     }
 
     public static void performFlightSearch() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "D:\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\\\Eclipse\\\\workspace\\\\newmaven\\\\src\\\\main\\\\java\\\\ChromeDriver\\\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         String fileName = "routes.json";
